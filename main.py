@@ -1,7 +1,7 @@
 #import config file
 from config import EM_Address, EM_Password, ACC_Server
 
-#import gmail data
+#import libraries
 import imaplib
 import email
 from email.header import decode_header
