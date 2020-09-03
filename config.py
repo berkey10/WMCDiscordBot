@@ -1,4 +1,4 @@
-EM_Address = "email"
-EM_Password = "password"
+EM_Address = "berkeycbhang@gmail.com"
+EM_Password = "fakepassword"
 ACC_Server = "imap.gmail.com"
 AUTH_Token = ''

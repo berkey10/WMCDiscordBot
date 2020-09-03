@@ -30,31 +30,41 @@ for num in data[0].split():
     raw_email_string = raw_email.decode('utf-8')
     email_message = email.message_from_string(raw_email_string)
 
-# download the attachments (if applicable)
-    for part in email_message.walk():
-        if part.get_content_maintype() == 'multipart':
-            continue
-        if part.get('Content-Disposition') is None:
-            continue
-        fileName = part.get_filename()
 
-        if bool(fileName):
-            filePath = os.path.join('/Users/berke/Desktop/ ', fileName)
-            if not os.path.isfile(filePath) :
-                fp = open(filePath, 'wb')
-                fp.write(part.get_payload(decode=True))
-                fp.close()
-        
-            subject = str(email_message).split("Subject: ", 1)
-            [1].split("\nTo:", 1) [0]
-            print ('Downloaded "{file}" from email titled "{subject}" with UID {uid}.'.format(file=fileName, subject=subject, uid=latest_email_uid.decode('utf-8')))
 
-# print subject
+# download the attachments
+#    for part in email_message.walk():
+#        if part.get_content_maintype() == 'multipart':
+#            continue
+#        if part.get('Content-Disposition') is None:
+#            continue
+#        fileName = part.get_filename()
+#
+#        if bool(fileName):
+#            filePath = os.path.join('/Users/berke/Desktop/ ', fileName)
+#            if not os.path.isfile(filePath) :
+#                fp = open(filePath, 'wb')
+#                fp.write(part.get_payload(decode=True))
+#                fp.close()
+#        
+#            subject = str(email_message).split("Subject: ", 1)
+#            [1].split("\nTo:", 1) [0]
+#            print ('Downloaded "{file}" from email titled "{subject}" with UID {uid}.'.format(file=fileName, subject=subject, uid=latest_email_uid.decode('utf-8')))
+
+# print subject/who it is from
 for response_part in data:
         if isinstance(response_part, tuple) :
                     msg = email.message_from_string(response_part[1].decode('utf-8'))
 email_subject = msg['subject']
 email_from = msg['from']
-print ('From :' + email_from + '\n')
-print ('Subject :' + email_subject + '\n')
-print (msg.get_payload(decode=True))
+print ('From: ' + email_from + '\n')
+print ('Subject: ' + email_subject + '\n')
+#print (msg.get_payload(decode=True))
+
+#print body of email
+b = email.message_from_string(raw_email_string)
+if b.is_multipart():
+    for payload in b.get_payload():
+       print (payload.get_payload())
+    
+
