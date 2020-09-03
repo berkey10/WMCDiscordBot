@@ -7,6 +7,7 @@ import email
 from email.header import decode_header
 import webbrowser
 import os
+#import discord
 
 
 #Connect to IMAP Server
@@ -19,7 +20,7 @@ mail.select("INBOX")
 #Searches through emails
 type, data = mail.search(None, 'ALL')
 mail_ids = data[0]
-id_list = mail_ids.splits()
+id_list = mail_ids.split()
 
 for num in data[0].split():
     typ, data = mail.fetch(num, '(RFC822)' )
@@ -38,7 +39,7 @@ for num in data[0].split():
         fileName = part.get_filename()
 
         if bool(fileName):
-            filePath = os.path.join('Users\berke\Desktop\VS Code Projects\WMCDiscordBot', fileName)
+            filePath = os.path.join('/Users/berke/Desktop/ ', fileName)
             if not os.path.isfile(filePath) :
                 fp = open(filePath, 'wb')
                 fp.write(part.get_payload(decode=True))
@@ -51,8 +52,7 @@ for num in data[0].split():
 # print subject
 for response_part in data:
         if isinstance(response_part, tuple) :
-            msg = email.message_from_string(response_part[1].decode('utf-8'))
-email.message_from_string(response_part[1].decode('utf-8'))
+                    msg = email.message_from_string(response_part[1].decode('utf-8'))
 email_subject = msg['subject']
 email_from = msg['from']
 print ('From :' + email_from + '\n')
