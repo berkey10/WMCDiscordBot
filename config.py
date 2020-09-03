@@ -1,4 +1,4 @@
-EM_Address = 'emailaddress'
-EM_Password = 'password'
-ACC_Server = "imap.google.com"
+EM_Address = "email"
+EM_Password = "password"
+ACC_Server = "imap.gmail.com"
 AUTH_Token = ''
